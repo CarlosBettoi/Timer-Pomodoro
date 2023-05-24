@@ -2,6 +2,8 @@ import { Play } from 'phosphor-react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod'
+import { differenceInSeconds } from 'date-fns'
+
 import {
   CountdowContainer,
   FormContainer,
@@ -53,8 +55,13 @@ export function Home() {
 
   useEffect(() => {
     if (activeCycle) {
+      setInterval(() => {
+        setAmmountSecondsPassed(
+          differenceInSeconds(new Date(), activeCycle.startDate),
+        )
+      }, 1000)
     }
-  }, [])
+  }, [activeCycle])
 
   function handleCreateNewCycle(data: NewCycleFormData) {
     const id = String(new Date().getTime())
