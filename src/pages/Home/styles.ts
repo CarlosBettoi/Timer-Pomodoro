@@ -82,7 +82,7 @@ export const Separator = styled.div`
   justify-content: center;
 `
 
-export const StartCountdownButton = styled.button`
+export const BaseCountdownButton = styled.button`
   width: 100%;
   border: 0;
   padding: 1rem;
@@ -105,3 +105,7 @@ export const StartCountdownButton = styled.button`
     background: ${(props) => props.theme['green-700']};
   }
 `
+
+export const StartCountdownButton = styled(BaseCountdownButton)``
+
+export const StopCountdownButton = styled(BaseCountdownButton)``
