@@ -90,22 +90,29 @@ export const BaseCountdownButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  color: ${(props) => props.theme['gray-100']};
   gap: 0.5rem;
   font-weight: bold;
   cursor: pointer;
-  background: ${(props) => props.theme['green-500']};
-  color: ${(props) => props.theme['gray-100']};
 
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
   }
+`
+
+export const StartCountdownButton = styled(BaseCountdownButton)`
+  background: ${(props) => props.theme['green-500']};
 
   &:not(:disabled):hover {
     background: ${(props) => props.theme['green-700']};
   }
 `
 
-export const StartCountdownButton = styled(BaseCountdownButton)``
+export const StopCountdownButton = styled(BaseCountdownButton)`
+  background: ${(props) => props.theme['red-500']};
 
-export const StopCountdownButton = styled(BaseCountdownButton)``
+  &:not(:disabled):hover {
+    background: ${(props) => props.theme['red-700']};
+  }
+`
