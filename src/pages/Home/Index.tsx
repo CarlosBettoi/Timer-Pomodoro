@@ -59,6 +59,11 @@ export function Home() {
     let interval: number
     if (activeCycle) {
       interval = setInterval(() => {
+        const secondsDifference = differenceInSeconds(
+          new Date(),
+          activeCycle.startDate,
+        )
+
         setAmmountSecondsPassed(
           differenceInSeconds(new Date(), activeCycle.startDate),
         )
@@ -90,7 +95,7 @@ export function Home() {
   function handleInterruptCycle() {
     setCycles(
       cycles.map((cycle) => {
-        if (cycle.id === activeCycle) {
+        if (cycle.id === activeCycleId) {
           return { ...cycle, interruptedDate: new Date() }
         } else {
           return cycle
@@ -117,6 +122,8 @@ export function Home() {
 
   const task = watch('task')
   const isSubmitDisabled = !task
+
+  console.log(cycles)
 
   return (
     <HomeContainer>
@@ -161,7 +168,7 @@ export function Home() {
         </CountdowContainer>
 
         {activeCycle ? (
-          <StopCountdownButton onClick={handleCreateNewCycle} type="button">
+          <StopCountdownButton onClick={handleInterruptCycle} type="button">
             <HandPalm size={24} />
             Interromper
           </StopCountdownButton>
